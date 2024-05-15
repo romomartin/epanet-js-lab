@@ -35,8 +35,7 @@ const printReport = (cTime)=>{
 }
 
 //Setting an emitter exp. bigger than 1 breaks the simulation results
-//from step 0 on.
-model.setOption(Option.Emitexpon, 1.1)
+model.setOption(Option.Emitexpon, 1.2)
 
 model.openH();
 model.initH(1);
@@ -45,11 +44,11 @@ let tStep = Infinity;
 do {
   const cTime = model.runH();
   printReport(cTime);
-
-  if(tStep >= 3){
+  
+  if(cTime >= 7200){
     model.setNodeValue(node1Index,NodeProperty.Emitter, 0.2)
   }
-
+  
   tStep = model.nextH();
 } while (tStep > 0);
 
